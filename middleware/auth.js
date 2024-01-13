@@ -5,7 +5,7 @@ const authenticateJwt = (req, res, next) => {
     console.log('----headers-----')
     console.log(req.headers);
     console.log('----headers-----')
-    const authHeader = req.headers.Authorization;
+    const authHeader = req.headers.authorization;
     if (authHeader) {
         const token = authHeader.split(' ')[1];
         console.log('We are here inside the auth middleware.\nToken: '+token);
