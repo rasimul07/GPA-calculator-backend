@@ -2,6 +2,9 @@ const jwt = require('jsonwebtoken');
 const secret = "secretGPA";
 
 const authenticateJwt = (req, res, next) => {
+    console.log('----headers-----')
+    console.log(req.headers);
+    console.log('----headers-----')
     const authHeader = req.headers.Authorization;
     if (authHeader) {
         const token = authHeader.split(' ')[1];
