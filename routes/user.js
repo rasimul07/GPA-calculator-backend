@@ -6,8 +6,21 @@ const router = express.Router();
 const User = require('../db')
 
 const testMiddleware = (req, res, next) => {
-    res.json('Hi i am inside a test middle ware.')
-    next()
+    const authHeader = req.headers.authorization;
+    if (authHeader) {
+        const token = authHeader.split(' ')[1];
+        console.log('We are here inside the auth middleware.\nToken: ' + token);
+        jwt.verify(token, secret, (err, user) => {
+            console.log(user);
+            if (err) {
+                return res.status(300).json({ message: "There is something wrong" });;
+            }
+            req.user = user;
+            next();
+        });
+    } else {
+        res.sendStatus(401);
+    }v
 }
 
 router.post('/signup', async (req, res) => {
