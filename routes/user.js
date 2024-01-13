@@ -44,7 +44,7 @@ router.put('/updateUserInfo', authenticateJwt, async(req, res) => {
     res.status(200).json({massage: "saved successfully"});
 })
 
-router.get('/getUserInfo', authenticateJwt, async(req, res) => {
+router.get('/getUserInfo', async(req, res) => {
     const { email, password } = req.user;
     const user = await User.findOne({ email, password });
     res.status(200).json(user);
