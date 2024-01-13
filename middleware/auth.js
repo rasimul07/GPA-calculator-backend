@@ -5,6 +5,7 @@ const authenticateJwt = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {
         const token = authHeader.split(' ')[1];
+        console.log('We are here inside the auth middleware.');
         jwt.verify(token, secret, (err, user) => {
             if (err) {
                 return res.status(300).json({ message: "Authentication failed" });;
